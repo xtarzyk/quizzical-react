@@ -1,22 +1,16 @@
-import { useState, useEffect } from "react"
 import Intro from "./components/Intro"
 import Quiz from "./components/Quiz"
+import {Routes, Route, useNavigate} from 'react-router-dom'
 
 function App() {
-  const [quizData, setQuizData] = useState(null)
-
-  useEffect(() => {
-    fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then(res => res.json())
-      .then(data => setQuizData(data.results))
-  }, []);
-
-  console.log(quizData)
-
+  
   return (
-    <div className="App">
-      <Intro />
-    </div>
+      <div className="App">
+        <Routes>
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/" element={<Intro />} />
+        </Routes>
+      </div>
   )
 }
 
